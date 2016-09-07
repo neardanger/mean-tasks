@@ -94,3 +94,5 @@ if($event.which === 1){
        })
      }
    }
+
+   //weird typescript compile error
