@@ -9,13 +9,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var todos_component_1 = require('./components/todos.component');
+var todo_service_1 = require('./services/todo.service');
+var http_1 = require('@angular/http');
 var AppComponent = (function () {
     function AppComponent() {
     }
     AppComponent = __decorate([
         core_1.Component({
+            moduleId: module.id,
             selector: 'my-app',
-            template: '<h2>Change text so h2<h2>'
+            templateUrl: 'app.component.html',
+            directives: [todos_component_1.TodosComponent],
+            providers: [http_1.HTTP_PROVIDERS, todo_service_1.TodoService]
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);

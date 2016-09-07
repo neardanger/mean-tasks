@@ -1,0 +1,36 @@
+<div class="add-todo-form text-center">
+   <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h3 class="panel-title">Tasks</h3>
+      </div>  
+      <div class="panel-body form-group">
+        <input type="text" class="form-control input-lg" id="inputDefault" placeholder="Type your task here" autofocus #todoText>
+        <br>
+        <button (click)="addTodo($event, todoText)" class="btn btn-primary">Submit Task</button>
+        </div>
+     </div>  
+  </div>
+
+  <div class="task-list">
+      <div class="alert alert-info text-center" [hidden]="todos.length > 0">
+          <h3>No Current Tasks Entered</h3>
+      </div>
+
+
+      <div *ngFor="let todo of todos">
+      <div class="col-md-1">
+          <input type="checkbox" [checked]="todo.isFinished" (click)="updateStatus(todo)">
+      </div>
+
+      <div class="col-md-7">
+          <span [class.hidden]="todo.isEditMode">{{todo.text}}</span>
+          <input [class.hidden]="!todo.isEditMode" type="text" [value]="todo.text" (keypress)="updateTodoText($event, todo)">
+          <input [class.hidden]="!todo.isEditMode" type="button" value="Cancel" (click)="setEditState(todo, false)" class="btn btn-danger">
+      </div>
+
+      <div class="col-md-4 btns">
+          <input type="button" class="btn btn-danger pull-right" (click)="deleteTodo(todo)" value="Remove">
+          <input [class.disabled]="todo.isFinished" (click)="setEditState(todo, true)" type="button" class="btn btn-default pull-right" value="Edit">
+        </div>
+      </div>
+  </div>

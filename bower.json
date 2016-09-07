@@ -1,0 +1,20 @@
+{
+  "name": "angular2-tasks",
+  "description": "a cool  todo list!",
+  "main": "server.js",
+  "authors": [
+    "steven"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/neardanger/mean-tasks",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7"
+  }
+}

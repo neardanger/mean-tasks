@@ -16,26 +16,26 @@ var express = require('express'),
         })
     });
 
-    router.get('/todos/:id',function(req,res,next){
+    router.get('/todo/:id',function(req,res,next){
         db.todos.findOne({_id:mongojs.ObjectId(req.params.id)},
-            function(err,todos){
+            function(err,todo){
                 if(err){
                     res.send(err)
                 } else{
-                    res.json(todos)
+                    res.json(todo)
                 }
             })
     });
 
-router.post('/todos',function(req,res,next){
-    var todos = req.body;
-    if(!todos.text || !(todos.isCompleted + '')){
+router.post('/todo',function(req,res,next){
+    var todo = req.body;
+    if(!todo.text || !(todo.isFinished + '')){
         res.status(400);
         res.json({
-            "error":"Invalid"
+            "error":"Incorrect"
         });
     }else{
-        db.todos.save(todos,function(err,result){
+        db.todos.save(todo,function(err,result){
             if(err){
                 res.send(err);
             }else{
@@ -45,16 +45,16 @@ router.post('/todos',function(req,res,next){
           }
      });
 
-     router.put('/todos/:id',function(req,res,next){
-    var todos = req.body;
+     router.put('/todo/:id',function(req,res,next){
+    var todo = req.body;
     var updObj = {};
 
-    if(todos.isCompleted){
-        updObj.isCompleted = todos.isCompleted
+    if(todo.isFinished){
+        updObj.isFinished = todo.isFinished
     }
 
-    if(todos.text){
-        updObj.text = todos.text;
+    if(todo.text){
+        updObj.text = todo.text;
     }
 
     if(!updObj){
@@ -77,7 +77,7 @@ router.post('/todos',function(req,res,next){
         }
      })
 
-     router.delete('/todos/:id',function(req,res,next){
+     router.delete('/todo/:id',function(req,res,next){
          db.todos.remove({
              _id:mongojs.ObjectId(req.params.id)},
              '',function(err,result){

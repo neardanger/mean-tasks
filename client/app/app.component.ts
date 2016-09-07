@@ -1,7 +1,13 @@
 import { Component } from '@angular/core';
+import {TodosComponent} from './components/todos.component';
+import {TodoService} from './services/todo.service'
+import {HTTP_PROVIDERS} from '@angular/http'
 
 @Component({
+  moduleId:module.id,
   selector: 'my-app',
-  template: '<h2>Change text so h2<h2>'
+  templateUrl: 'app.component.html',
+  directives:[TodosComponent],
+  providers:[HTTP_PROVIDERS, TodoService]
 })
 export class AppComponent { }
